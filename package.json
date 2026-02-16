@@ -1,0 +1,28 @@
+{
+  "name": "immich-app",
+  "version": "1.0.0",
+  "description": "Dedicated browser for Immich",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "ro.darzu.immich.browser",
+    "productName": "ImmichApp",
+    "win": {
+      "target": "portable",
+      "icon": "assets/immich.ico"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

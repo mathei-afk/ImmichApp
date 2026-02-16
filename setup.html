@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurare Immich</title>
+    <style>
+        :root {
+            /* Default Dark Theme */
+            --primary: #516beb;
+            --bg: #111827;
+            --card-bg: #1f2937;
+            --text: #f3f4f6;
+            --text-dim: #9ca3af;
+            --input-bg: #374151;
+            --input-border: transparent;
+        }
+
+        /* Light Theme based on System Preference */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f3f4f6;
+                --card-bg: #ffffff;
+                --text: #111827;
+                --text-dim: #4b5563;
+                --input-bg: #f9fafb;
+                --input-border: #d1d5db;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            animation: fadeIn 0.8s ease-out;
+            transition: background-color 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+.logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 0.8rem;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 0.75rem;
+            color: var(--text);
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(81, 107, 235, 0.2);
+            background-color: var(--card-bg);
+        }
+
+        button {
+            width: 100%;
+            padding: 1.1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0;
+        }
+
+        button:hover {
+            background-color: #637df2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(81, 107, 235, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="assets/immich-logo.svg" alt="Immich Logo" class="logo">
+        <h1>Welcome to Immich</h1>
+        <p>Enter your server URL to get started.</p>
+
+        <div class="input-group">
+            <label for="url">Server Endpoint URL</label>
+            <input type="url" id="url" placeholder="https://immich.example.com" required>
+        </div>
+
+        <button id="nextBtn">Next</button>
+
+        <div class="footer">
+            mathei-afk
+        </div>
+    </div>
+
+    <script>
+        const nextBtn = document.getElementById('nextBtn');
+        const urlInput = document.getElementById('url');
+
+        // Pre-fill if exists in local storage (though main process will handle persistence)
+        const saved = localStorage.getItem('last-url');
+        if (saved) urlInput.value = saved;
+
+        nextBtn.addEventListener('click', () => {
+            let url = urlInput.value.trim();
+            if (!url) {
+                alert('Te rog introdu un URL valid!');
+                return;
+            }
+
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
+            }
+
+            try {
+                new URL(url);
+                localStorage.setItem('last-url', url);
+                window.electronAPI.saveUrl(url);
+            } catch (e) {
+                alert('URL-ul nu este valid!');
+            }
+        });
+
+        // Enter key support
+        urlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') nextBtn.click();
+        });
+    </script>
+</body>
+
+</html>
