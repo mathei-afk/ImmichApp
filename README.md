@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://immich.app" target="_blank">
-    <img src="assets/immich-logo.svg" width="450" alt="Immich Logo"/>
+    <img src="assets/immich-logo.svg" width="650" alt="Immich Logo"/>
   </a>
 </p>
 
