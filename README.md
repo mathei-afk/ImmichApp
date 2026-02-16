@@ -2,15 +2,16 @@
 
 <p align="center">
   <a href="https://immich.app" target="_blank">
-    <img src="assets/immich-logo.svg" width="200" alt="Immich Logo"/>
+    <img src="assets/immich-logo.svg" width="450" alt="Immich Logo"/>
   </a>
 </p>
 
 <p align="center">
-  A dedicated, lightweight desktop browser for your personal Immich server.
+  <strong>A dedicated, lightweight desktop browser for your personal Immich server.</strong>
 </p>
 
 ---
+
 
 ImmichApp is a minimal Electron-based desktop wrapper for your personal Immich instance.  
 It provides a clean, native app experience without browser clutter like address bars or tabs.
@@ -35,7 +36,7 @@ It provides a clean, native app experience without browser clutter like address 
 If you **don’t want to install Node.js or run commands in the terminal**, you can simply download the ready-to-use `.exe` file from the Releases page:
 
 👉 **Download here:**  
-https://github.com/yourusername/ImmichApp/releases
+[Releases](https://github.com/mathei-afk/ImmichApp/releases)
 
 1. Go to the latest release.
 2. Download the `.exe` file.
