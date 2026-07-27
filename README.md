@@ -58,7 +58,7 @@ If you prefer running it manually or contributing to development:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/ImmichApp.git
+   git clone https://github.com/mathei-afk/ImmichApp.git
    cd ImmichApp
    ```
 
